@@ -1,0 +1,19 @@
+{
+  "name": "yiids",
+  "version": "1.0.0",
+  "description": "Yi IDS 4 (Greenovation Challenge)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dev-Reddy/Dev-Reddy-TeamPrithvi_Yi-IDS4.git"
+  },
+  "author": "Team Prithvi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dev-Reddy/Dev-Reddy-TeamPrithvi_Yi-IDS4/issues"
+  },
+  "homepage": "https://github.com/Dev-Reddy/Dev-Reddy-TeamPrithvi_Yi-IDS4#readme"
+}
