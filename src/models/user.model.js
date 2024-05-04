@@ -1,12 +1,13 @@
 // Description: User model schema and some users
 
 //Creating the UserModel class
+
+let id = 1;
 export default class UserModel {
   // ------------------------------------------------------------
 
   //Constructor
   constructor(
-    id,
     name,
     username,
     email,
@@ -26,7 +27,7 @@ export default class UserModel {
     verificationID,
     photoPath
   ) {
-    this.id = id;
+    this.id = id++;
     this.name = name;
     this.username = username;
     this.email = email;
