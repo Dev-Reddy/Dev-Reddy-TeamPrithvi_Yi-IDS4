@@ -2,6 +2,9 @@
 
 import express from "express";
 import ejsLayouts from "express-ejs-layouts";
+import path from "path";
+import session from "express-session";
+import cookieParser from "cookie-parser";
 
 // ========================================================
 
@@ -44,7 +47,7 @@ app.use(cookieParser());
 // =========================================================
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.render("home");
 });
 
 //EXPORTING THE APP

@@ -1,0 +1,248 @@
+<!-- LAYOUT FOR ALL EJS FILES -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prithvi</title>
+    <!-- CDNS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="/css/404.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav id="mynav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/manage-complaints"
+                >Manage Complaints</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/new-complaint"
+                >New Complaint</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/rain">Rain Status</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/educate">Educate</a>
+            </li>
+
+            <li class="nav-item">
+              <form action="/logout" method="post">
+                <button class="nav-link text-white" type="submit">
+                  Logout
+                </button>
+              </form>
+            </li>
+
+            <!-- ELSE SHOW LOGIN BUTTON -->
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/login">Login</a>
+            </li>
+          </ul>
+
+          <!-- LAST VISIT -->
+          <!-- <%if(locals.lastVisit){%>
+          <div class="d-flex alert alert-primary" id="lastVisit" role="alert">
+            Your last visit was on <%=locals.lastVisit%>
+          </div>
+          <%}%> -->
+          <!-- LAST VIST -->
+
+          <!-- SEARCH -->
+          <form class="d-flex" role="search" action="/jobs" method="GET">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              name="searchQuery"
+            />
+            <button class="btn btn-outline-light" type="submit">Search</button>
+          </form>
+          <!-- SEARCH -->
+        </div>
+
+        <div class="d-flex mx-4" role="alert">
+          <!-- danger button -->
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            EMERGENCY SOS
+          </button>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- NAVBAR -->
+
+    <!-- BODY -->
+
+    <div><%- body %></div>
+
+    <!-- BODY -->
+
+    <!-- FOOTER -->
+    <div class="bg-dark">
+      <div class="container text-white">
+        <footer class="py-3">
+          <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column text-white">
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Home</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Features</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Pricing</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">FAQs</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">About</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Home</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Features</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Pricing</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">FAQs</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">About</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Home</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Features</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">Pricing</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">FAQs</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-white">About</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+              <form>
+                <h5>Contact us</h5>
+                <p>For support from our team, please fill the below form</p>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Email Address</span>
+                  <input
+                    id="newsletter1"
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter Email address"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Your Problem</span>
+                  <textarea
+                    class="form-control"
+                    aria-label="Your Problem"
+                    placeholder="Start typing your message here"
+                  ></textarea>
+                </div>
+                <button class="btn btn-primary w-100" type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div
+            class="d-flex flex-column flex-sm-row justify-content-between border-top"
+          >
+            <p>© 2024 Dev Reddy, Inc. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+              <li class="ms-3">
+                <a class="link-body-emphasis" href="#"
+                  ><svg class="bi" width="24" height="24">
+                    <use xlink:href="#twitter"></use></svg
+                ></a>
+              </li>
+              <li class="ms-3">
+                <a class="link-body-emphasis" href="#"
+                  ><svg class="bi" width="24" height="24">
+                    <use xlink:href="#instagram"></use></svg
+                ></a>
+              </li>
+              <li class="ms-3">
+                <a class="link-body-emphasis" href="#"
+                  ><svg class="bi" width="24" height="24">
+                    <use xlink:href="#facebook"></use></svg
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
