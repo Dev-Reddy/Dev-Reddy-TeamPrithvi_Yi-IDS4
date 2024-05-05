@@ -270,5 +270,46 @@
         </footer>
       </div>
     </div>
+
+    <script>
+      <!-- LOCATION -->
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        } else {
+          console.log("Geolocation is not supported by this browser.");
+        }
+      }
+
+      const currentUrl = window.location.href;
+
+      // Get the user's geolocation.
+      const successCallback = (position) => {
+        const request = new XMLHttpRequest();
+        position = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        };
+
+        const pathname = new URL(currentUrl).pathname;
+        const search = new URL(currentUrl).search;
+
+        // Send the request to the server with the geolocation as a custom header.
+        request.open("GET", `http://localhost:3300${pathname}${search}`); // Replace with your local server URL
+        request.setRequestHeader("geolocation", JSON.stringify(position));
+        console.log("Sending request to server with geolocation data");
+        request.send();
+      };
+
+      // Handle errors.
+      const errorCallback = (error) => {
+        console.log(error);
+      };
+
+      // Get the user's geolocation.
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
+      window.onload = getLocation;
+    </script>
   </body>
 </html>
