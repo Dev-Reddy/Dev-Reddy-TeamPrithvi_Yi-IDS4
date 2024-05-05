@@ -32,6 +32,7 @@ export default class GovOfficialModel {
     this.state = state;
     this.municipality = municipality;
     this.photoPath = photoPath;
+    this.complaints = [];
   }
 }
 

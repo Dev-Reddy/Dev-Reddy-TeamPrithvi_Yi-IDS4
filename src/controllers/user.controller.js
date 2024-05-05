@@ -1,0 +1,137 @@
+//Importing user model
+import UserModel from "../models/user.model.js";
+import jwt from "jsonwebtoken";
+
+//creating user controller class
+class UserController {
+  //render signin page
+
+  static getSignIn(req, res) {
+    console.log(req.session);
+    res.render("signin");
+  }
+
+  //sign in user
+
+  static signIn(req, res) {
+    const { email, password } = req.body;
+    const user = UserModel.signIn(email, password);
+    if (!user) {
+      return res.status(400).send("Invalid credentials");
+    } else {
+      //1. Create a token
+      const token = jwt.sign(
+        {
+          userID: user.id,
+          email: user.email,
+        },
+        "ApagTT16lOfH2T2wIhhHImFe7Afs3wD9",
+        {
+          expiresIn: "15d",
+        }
+      );
+      req.session.token = token;
+      //2. Send the token to the client
+      return res.status(200).redirect("/");
+    }
+  }
+
+  //sign out user
+
+  static signOut(req, res) {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(400).send("Could not sign out");
+      } else {
+        return res.status(200).redirect("/");
+      }
+    });
+  }
+
+  //render signup page
+
+  static getSignUp(req, res) {
+    res.render("signup");
+  }
+
+  //sign up user
+
+  static async signUp(req, res) {
+    const {
+      name,
+      email,
+      number,
+      password,
+      address,
+      pincode,
+      city,
+      district,
+      state,
+      wardNo,
+      zoneNo,
+      municipality,
+      verificationType,
+      verificationID,
+    } = req.body;
+
+    if (UserModel.checkUserExists(email)) {
+      return res.status(400).redirect("/user/signin");
+    }
+
+    const coordinateAddress = `india+${pincode}`;
+    const geoLocationData = await fetch(
+      `https://geocode.maps.co/search?q=${coordinateAddress}&api_key=66366662de130938126976jscf35868`
+    )
+      .then((res) => res.json())
+      .then((data) => data)
+      .catch((err) => console.log(err));
+
+    const coordinates = {
+      latitude: geoLocationData[0].lat,
+      longitude: geoLocationData[0].lon,
+    };
+
+    const verificationDocument = "uploads/document" + req.file.filename;
+    const user = UserModel.addUser(
+      name,
+      email,
+      number,
+      password,
+      coordinates,
+      address,
+      pincode,
+      city,
+      district,
+      state,
+      wardNo,
+      zoneNo,
+      municipality,
+      verificationType,
+      verificationDocument,
+      verificationID
+    );
+
+    if (!user) {
+      return res.status(400).send("Could not sign up");
+    } else {
+      console.log(user);
+      const token = jwt.sign(
+        {
+          userID: user.id,
+          email: user.email,
+        },
+        "ApagTT16lOfH2T2wIhhHImFe7Afs3wD9",
+        {
+          expiresIn: "15d",
+        }
+      );
+      req.session.token = token;
+      //2. Send the token to the client
+      return res.status(200).redirect("/");
+    }
+  }
+}
+
+//exporting user controller
+
+export default UserController;

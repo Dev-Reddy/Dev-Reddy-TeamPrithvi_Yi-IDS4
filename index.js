@@ -6,6 +6,9 @@ import path from "path";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 
+//IMPORTING ROUTERS
+import userRouter from "./src/router/user.routes.js";
+
 // ========================================================
 
 //EXPRESS AND EJS SETUP
@@ -49,6 +52,12 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+// =========================================================
+
+//ROUTES
+
+app.use("/user", userRouter);
 
 //EXPORTING THE APP
 export default app;

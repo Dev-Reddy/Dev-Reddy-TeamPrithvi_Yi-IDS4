@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="/css/404.css" />
+
     <link rel="stylesheet" href="/css/index.css" />
   </head>
   <body>
@@ -52,16 +52,16 @@
             </li>
 
             <li class="nav-item">
-              <form action="/logout" method="post">
+              <form action="/user/signout" method="post">
                 <button class="nav-link text-white" type="submit">
-                  Logout
+                  Sign Out
                 </button>
               </form>
             </li>
 
             <!-- ELSE SHOW LOGIN BUTTON -->
             <li class="nav-item">
-              <a class="nav-link text-white" href="/login">Login</a>
+              <a class="nav-link text-white" href="/user/signin">Sign In</a>
             </li>
           </ul>
         </div>
