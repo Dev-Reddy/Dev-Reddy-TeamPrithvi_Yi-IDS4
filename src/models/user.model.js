@@ -24,8 +24,8 @@ export default class UserModel {
     zoneNo,
     municipality,
     verificationType,
-    verificationID,
-    photoPath
+    verificationDocument,
+    verificationID
   ) {
     this.id = id++;
     this.name = name;
@@ -44,8 +44,8 @@ export default class UserModel {
     this.zoneNo = zoneNo;
     this.municipality = municipality;
     this.verificationType = verificationType;
+    this.verificationDocument = verificationDocument;
     this.verificationID = verificationID;
-    this.photoPath = photoPath;
     this.complaints = [];
   }
 }
@@ -74,8 +74,8 @@ var users = [
     1,
     "Mawsynram",
     "Aadhar",
-    "123456789",
-    "https://robohash.org/John.png?set=set4"
+    "https://robohash.org/John.png?set=set4",
+    "123456789"
   ),
 
   new UserModel(
@@ -99,7 +99,7 @@ var users = [
     1,
     "New Delhi",
     "Aadhar",
-    "123456789",
-    "https://robohash.org/Jane.png?set=set4"
+    "https://robohash.org/Jane.png?set=set4",
+    "123456789"
   ),
 ];
