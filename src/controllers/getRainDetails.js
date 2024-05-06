@@ -67,7 +67,6 @@ export function getRainDetails(weather) {
 }
 
 export function getRainWarning(rainDetails) {
-  console.log(rainDetails);
   if (rainDetails.length === 0) {
     return {
       code: 0,

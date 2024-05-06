@@ -214,8 +214,15 @@
     </div>
   </div>
   <div class="row row-cols-2 row-cols-md-3 g-4">
-    <%if(rainDetails && rainDetails.length > 0){%> <%
-    rainDetails.forEach((rainDetail) => { %>
+    <%if(rainDetails && rainDetails.length > 0){%>
+    <div class="card text-body w-100">
+      <div class="card-body p-2">
+        <h3 class="card-title text-center mt-2">
+          FOLLOWING ARE THE RAINY DAYS IN THE NEXT TWO WEEKS :-
+        </h3>
+      </div>
+    </div>
+    <% rainDetails.forEach((rainDetail) => { %>
     <div class="col">
       <div class="card text-body" style="border-radius: 35px">
         <div class="card-body p-4">
@@ -310,7 +317,7 @@
 
     <div class="card text-body w-100">
       <div class="card-body p-4">
-        <h5 class="card-title text-center">NO RAIN IN THE NEXT TWO WEEKS</h5>
+        <h3 class="card-title text-center">NO RAIN IN THE NEXT TWO WEEKS</h3>
       </div>
     </div>
 

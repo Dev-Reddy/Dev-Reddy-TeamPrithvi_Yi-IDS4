@@ -30,6 +30,7 @@ class UserController {
         }
       );
       req.session.token = token;
+      req.session.userID = user.id;
       req.session.pincode = user.pincode;
       req.session.loggedIn = true;
       //2. Send the token to the client
