@@ -1,8 +1,10 @@
 import express from "express";
-import EducateController from "../controllers/educate.controller";
+import EducateController from "../controllers/educate.controller.js";
 
-const router = express.Router();
+const educateRouter = express.Router();
 
-router.get("/", EducateController.getAll);
+educateRouter.get("/", EducateController.getAll);
 
-router.get("/blog", EducateController.getOne);
+educateRouter.get("/blog", EducateController.getOne);
+
+export default educateRouter;
