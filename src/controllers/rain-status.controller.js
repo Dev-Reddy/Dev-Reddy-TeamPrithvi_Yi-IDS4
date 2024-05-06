@@ -43,7 +43,8 @@ export default class RainStatusController {
       //   ? `${location.address.city}, ${location.address.state} - ${pincode}`
       //   : `${location.address.state} - ${pincode}`;
 
-      const a = location.address.city ? location.address.city + "," : "";
+      const a =
+        location.address.city != undefined ? location.address.city + "," : "";
       const b = location.address.state ? location.address.state : "";
       const c = pincode ? pincode : "";
 
