@@ -52,7 +52,9 @@ class UserController {
   //render signup page
 
   static getSignUp(req, res) {
-    res.render("signup");
+    res.render("signup", {
+      loggedIn: req.session.loggedIn,
+    });
   }
 
   //sign up user

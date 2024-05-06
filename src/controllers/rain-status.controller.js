@@ -12,6 +12,8 @@ export default class RainStatusController {
         .then((data) => data)
         .catch((err) => console.log(err));
 
+      console.log(geoLocationData);
+
       if (geoLocationData.length === 0) {
         return res.render("rain-status", {
           error: "Invalid Pincode",
@@ -37,9 +39,17 @@ export default class RainStatusController {
 
       console.log(location);
 
-      const address = location.address.city
-        ? `${location.address.city}, ${location.address.state} - ${pincode}`
-        : `${location.address.state} - ${pincode}`;
+      // const address = location.address.city
+      //   ? `${location.address.city}, ${location.address.state} - ${pincode}`
+      //   : `${location.address.state} - ${pincode}`;
+
+      const address = location.address
+        ? location.address.city
+          ? `${location.address.city}, ${location.address.state} - ${pincode}`
+          : location.address.state
+          ? `${location.address.state} - ${pincode}`
+          : `${pincode}`
+        : `${pincode}`;
       const city = location.address.city ? location.address.city : "";
 
       const weather = await fetch(

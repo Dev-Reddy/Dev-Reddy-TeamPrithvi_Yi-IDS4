@@ -68,6 +68,7 @@
               <a class="nav-link text-white" href="/educate">Educate</a>
             </li>
 
+            <% if(loggedIn){%>
             <li class="nav-item">
               <form action="/user/signout" method="post">
                 <button class="nav-link text-white" type="submit">
@@ -75,11 +76,13 @@
                 </button>
               </form>
             </li>
+            <%} else {%>
 
             <!-- ELSE SHOW LOGIN BUTTON -->
             <li class="nav-item">
               <a class="nav-link text-white" href="/user/signin">Sign In</a>
             </li>
+            <%}%>
           </ul>
         </div>
 

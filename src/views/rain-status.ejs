@@ -9,6 +9,9 @@
   </div>
   <%}%>
   <div class="m-auto text-center w-50">
+    <%if(error){%>
+    <div class="alert alert-danger"><%=error%></div>
+    <%}%>
     <form action="/rain-status" method="GET">
       <div class="input-group mb-3">
         <span
@@ -48,7 +51,7 @@
       <h2>
         ALERT!!! <%=rainWarning.message%> in <%if(address){%><%=address%><%}%>
       </h2>
-      <% } else {%>
+      <% } else if(rainWarning.code<=2 && rainWarning.code>=0){%>
       <h2>
         SAFE! <%=rainWarning.message%> in <%if(address){%><%=address%><%}%>
       </h2>
@@ -304,11 +307,10 @@
       </div>
     </div>
     <%})%> <%} else {%>
-    <div class="col">
-      <div class="card text-body" style="border-radius: 35px">
-        <div class="card-body p-4">
-          <h5 class="card-title text-center">No RAIN</h5>
-        </div>
+
+    <div class="card text-body w-100">
+      <div class="card-body p-4">
+        <h5 class="card-title text-center">NO RAIN IN THE NEXT TWO WEEKS</h5>
       </div>
     </div>
 
