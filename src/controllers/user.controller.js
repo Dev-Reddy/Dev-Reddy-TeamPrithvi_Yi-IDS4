@@ -7,7 +7,6 @@ class UserController {
   //render signin page
 
   static getSignIn(req, res) {
-    console.log(req.session);
     res.render("signin");
   }
 
@@ -31,6 +30,8 @@ class UserController {
         }
       );
       req.session.token = token;
+      req.session.pincode = user.pincode;
+      req.session.loggedIn = true;
       //2. Send the token to the client
       return res.status(200).redirect("/");
     }
@@ -119,6 +120,7 @@ class UserController {
         {
           userID: user.id,
           email: user.email,
+          pincode: user.pincode,
         },
         "ApagTT16lOfH2T2wIhhHImFe7Afs3wD9",
         {

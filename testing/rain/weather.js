@@ -1,37 +1,37 @@
-let latitude;
-let longitude;
-
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showLocation, showError);
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   } else {
     console.log("Geolocation is not supported by this browser.");
   }
 }
 
-function showLocation(position) {
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-  console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-  getWeather();
-}
+const currentUrl = window.location.href;
 
-function showError(error) {
-  switch (error.code) {
-    case error.PERMISSION_DENIED:
-      console.log("User denied the request for Geolocation.");
-      break;
-    case error.POSITION_UNAVAILABLE:
-      console.log("Location information is unavailable.");
-      break;
-    case error.TIMEOUT:
-      console.log("The request to get user location timed out.");
-      break;
-    case error.UNKNOWN_ERROR:
-      console.log("An unknown error occurred.");
-      break;
-  }
-}
+// Get the user's geolocation.
+const successCallback = (position) => {
+  const request = new XMLHttpRequest();
+  position = {
+    latitude: position.coords.latitude,
+    longitude: position.coords.longitude,
+  };
+
+  const pathname = new URL(currentUrl).pathname;
+  const search = new URL(currentUrl).search;
+
+  // Send the request to the server with the geolocation as a custom header.
+  request.open("GET", `http://localhost:3300${pathname}${search}`); // Replace with your local server URL
+  request.setRequestHeader("geolocation", JSON.stringify(position));
+  request.send();
+};
+
+// Handle errors.
+const errorCallback = (error) => {
+  console.log(error);
+};
+
+// Get the user's geolocation.
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 async function getWeather() {
   console.log("latitude", latitude);

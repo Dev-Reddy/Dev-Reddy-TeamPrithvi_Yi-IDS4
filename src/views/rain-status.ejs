@@ -1,11 +1,66 @@
 <div class="container-fluid p-4">
-  <div class="card text-bg-danger mb-3">
+  <%if(loggedIn){%>
+  <div class="mb-3 w-100 text-center">
+    <button class="btn btn-primary" type="button" id="button-addon2">
+      <a href="/rain-status" class="btn btn-primary text-light"
+        >Check The Rain Prediction for your Pincode</a
+      >
+    </button>
+  </div>
+  <%}%>
+  <div class="m-auto text-center w-50">
+    <form action="/rain-status" method="GET">
+      <div class="input-group mb-3">
+        <span
+          class="input-group-text border border-secondary text-bg-secondary"
+          id="basic-addon1"
+          >Search for any other pincode&nbsp;
+        </span>
+
+        <input
+          type="number"
+          class="form-control border border-secondary"
+          placeholder="Enter Pincode"
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+          name="pincode"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="submit"
+          id="button-addon2"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div
+    class="card mb-3 <% if (rainWarning.code >= 4) { %> text-bg-danger <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %> text-bg-warning <% } else { %> text-bg-success <% } %>"
+  >
     <div class="card-header text-center">
-      <h2>WARNING!!! HIGH RAINFALL EXPECTED IN BHOPAL</h2>
+      <% if (rainWarning.code >= 4) { %>
+      <h2>
+        WARNING!!! <%=rainWarning.message%> in <%if(address){%><%=address%><%}%>
+      </h2>
+      <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %>
+      <h2>
+        ALERT!!! <%=rainWarning.message%> in <%if(address){%><%=address%><%}%>
+      </h2>
+      <% } else {%>
+      <h2>
+        SAFE! <%=rainWarning.message%> in <%if(address){%><%=address%><%}%>
+      </h2>
+      <% } %>
     </div>
+
     <div class="card-body d-flex flex-column justify-content-evenly gap-3">
       <h3 class="card-title">
-        <a href="#" class="link-light">
+        <a
+          href="#"
+          class="<% if (rainWarning.code >= 4) { %> text-bg-danger <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %> text-bg-warning <% } else { %> text-bg-success <% }%>"
+        >
           File a complaint if you are facing any flooding or drainage or any
           other issues in your area.</a
         >
@@ -155,18 +210,22 @@
       </div>
     </div>
   </div>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="row row-cols-2 row-cols-md-3 g-4">
+    <%if(rainDetails && rainDetails.length > 0){%> <%
+    rainDetails.forEach((rainDetail) => { %>
     <div class="col">
       <div class="card text-body" style="border-radius: 35px">
         <div class="card-body p-4">
           <div class="d-flex">
-            <h6 class="flex-grow-1">Bhopal</h6>
-            <h6>05 May 2024</h6>
+            <h6 class="flex-grow-1"><%=city%></h6>
+            <h6><%=rainDetail.date%></h6>
           </div>
 
-          <div class="d-flex flex-column text-center mt-5 mb-4">
-            <h6 class="display-6 mb-0 font-weight-bold">13 mm rain</h6>
-            <span class="small" style="color: #868b94">Stormy</span>
+          <div class="d-flex flex-column text-center mt-1 mb-2">
+            <h6 class="display-6 mb-0 font-weight-bold">
+              <%=rainDetail.precipitation_sum%>
+            </h6>
+            <span class="fw-bold fs-6"><%=rainDetail.status%></span>
           </div>
 
           <div class="d-flex align-items-center">
@@ -182,7 +241,7 @@
                   <td>
                     <div>
                       <i class="fas fa-wind fa-fw" style="color: #868b94"></i>
-                      <span class="ms-1"> 15mm </span>
+                      <span class="ms-1"> <%=rainDetail.rain_sum%> </span>
                     </div>
                   </td>
                 </tr>
@@ -196,7 +255,7 @@
                   <td>
                     <div>
                       <i class="fas fa-tint fa-fw" style="color: #868b94"></i>
-                      <span class="ms-1"> 25mm </span>
+                      <span class="ms-1"> <%=rainDetail.showers_sum%></span>
                     </div>
                   </td>
                 </tr>
@@ -210,7 +269,9 @@
                   <td>
                     <div>
                       <i class="fas fa-sun fa-fw" style="color: #868b94"></i>
-                      <span class="ms-1"> 10h </span>
+                      <span class="ms-1">
+                        <%=rainDetail.precipitation_hours%>
+                      </span>
                     </div>
                   </td>
                 </tr>
@@ -224,7 +285,9 @@
                   <td>
                     <div>
                       <i class="fas fa-sun fa-fw" style="color: #868b94"></i>
-                      <span class="ms-1"> 90% </span>
+                      <span class="ms-1">
+                        <%=rainDetail.precipitation_propbability_max%>
+                      </span>
                     </div>
                   </td>
                 </tr>
@@ -240,5 +303,15 @@
         </div>
       </div>
     </div>
+    <%})%> <%} else {%>
+    <div class="col">
+      <div class="card text-body" style="border-radius: 35px">
+        <div class="card-body p-4">
+          <h5 class="card-title text-center">No RAIN</h5>
+        </div>
+      </div>
+    </div>
+
+    <%}%>
   </div>
 </div>

@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 
 //IMPORTING ROUTERS
 import userRouter from "./src/router/user.routes.js";
+import rainStatusRouter from "./src/router/rain-status.routes.js";
 
 // ========================================================
 
@@ -58,6 +59,7 @@ app.get("/", (req, res) => {
 //ROUTES
 
 app.use("/user", userRouter);
+app.use("/rain-status", rainStatusRouter);
 
 //EXPORTING THE APP
 export default app;
