@@ -48,8 +48,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link text-white" href="/complaint/manage"
-                >Manage Complaints</a
+              <a class="nav-link text-white" href="/complaint/"
+                >See Complaints</a
               >
             </li>
             <li class="nav-item">
@@ -65,7 +65,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link text-white" href="/educate">Educate</a>
+              <a class="nav-link text-white" href="/">Educate</a>
             </li>
 
             <% if(loggedIn){%>
@@ -139,9 +139,69 @@
             ></button>
           </div>
           <div class="modal-body">
-            <div class="alert alert-danger" role="alert">
-              USE THIS BUTTON ONLY IN CASE OF EMERGENCY
-            </div>
+            <p>
+              Please make sure to turn on your location (GPS) and allow us to
+              access your location before sending the SOS so that we can send
+              the emergency services to your location.
+            </p>
+            <form action="/user/alert" method="post" class="p-2">
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text">Name</span>
+                  <input
+                    required
+                    name="name"
+                    aria-label="name"
+                    class="form-control"
+                    placeholder="enter your name"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text">Contact</span>
+                  <input
+                    required
+                    name="number"
+                    aria-label="number"
+                    class="form-control"
+                    placeholder="Enter your contact details"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text">Current Location</span>
+                  <input
+                    required
+                    name="location"
+                    aria-label="location"
+                    class="form-control"
+                    placeholder="Enter your current location"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text">Pincode</span>
+                  <input
+                    required
+                    name="pincode"
+                    aria-label="pincode"
+                    class="form-control"
+                    placeholder="Enter your pincode"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-md mt-2 lbtn w-100 btn-danger"
+              >
+                SEND SOS
+              </button>
+            </form>
           </div>
           <div class="modal-footer">
             <button
@@ -151,7 +211,6 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>

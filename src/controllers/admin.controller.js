@@ -2,9 +2,12 @@ import AdminModel from "../models/admin.model.js";
 import { pincodeRainWarning } from "./getRainDetails.js";
 import { sendAlertMessage } from "./sendMail.js";
 
+
 export default class AdminController {
   static getDashboard(req, res) {
-    res.render("/");
+    res.render("admin-dashboard", {
+      loggedIn: req.session.loggedIn,
+    });
   }
 
   static sendAlert(req, res) {
@@ -23,6 +26,5 @@ export default class AdminController {
         }
       });
     });
-    res.redirect("/");
   }
 }

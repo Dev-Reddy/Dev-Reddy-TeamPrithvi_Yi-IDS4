@@ -8,7 +8,7 @@ const adminRouter = express.Router();
 
 //3. Define routes
 adminRouter.get("/", AdminController.getDashboard);
-adminRouter.get("/send-alert", AdminController.sendAlert);
+adminRouter.post("/send-alert", AdminController.sendAlert);
 
 //5. Export Router
 

@@ -2,6 +2,7 @@
 import AdminModel from "../models/admin.model.js";
 import UserModel from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import { sendSOSMail } from "./sendMail.js";
 
 //creating user controller class
 class UserController {
@@ -98,7 +99,7 @@ class UserController {
       longitude: geoLocationData[0].lon,
     };
 
-    const verificationDocument = "uploads/document" + req.file.filename;
+    const verificationDocument = "uploads/document/" + req.file.filename;
     const user = UserModel.addUser(
       name,
       email,
@@ -146,6 +147,24 @@ class UserController {
       //2. Send the token to the client
       return res.status(200).redirect("/");
     }
+  }
+
+  static alert(req, res) {
+    const { name, number, location, pincode } = req.body;
+    console.log(req.body);
+    if (req.headers["geolocation"]) {
+      const geolocation = JSON.parse(req.headers["geolocation"]);
+      const coordinatesObj = {
+        latitude: geolocation.latitude,
+        longitude: geolocation.longitude,
+      };
+      const coordinates = JSON.stringify(coordinatesObj);
+      console.log(coordinates);
+      sendSOSMail(pincode, name, number, location, coordinates);
+      return res.status(200).redirect("/");
+    }
+    sendSOSMail(pincode, name, number, location);
+    return res.status(200).redirect("/");
   }
 }
 

@@ -3,7 +3,7 @@
     <h1 class="form-heading text-primary">FILE NEW COMPLAINT</h1>
 
     <form
-      action="/new-complaint"
+      action="/complaint/new"
       method="POST"
       class="job-form"
       enctype="multipart/form-data"
@@ -17,6 +17,7 @@
           aria-label="Name"
           aria-describedby="basic-addon1"
           name="name"
+          required
         />
       </div>
       <div class="input-group mb-3">
@@ -28,6 +29,17 @@
           aria-label="Contact"
           aria-describedby="basic-addon1"
           name="contact"
+          required
+        />
+        <span class="input-group-text" id="basic-addon1">Email</span>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter Email ID"
+          aria-label="Email"
+          aria-describedby="basic-addon1"
+          name="email"
+          required
         />
       </div>
       <div class="input-group mb-3">
@@ -58,6 +70,7 @@
           placeholder="Enter Pincode"
           aria-label="Pincode"
           name="pincode"
+          required
         />
       </div>
 
@@ -136,6 +149,23 @@
 
       <div class="mb-3">
         <label for="description" class="form-label"
+          >Enter subject of your complaint :-</label
+        >
+        <div class="input-group">
+          <span class="input-group-text">Subject</span>
+          <input
+            class="form-control"
+            aria-label=""
+            name="title"
+            id="title"
+            placeholder="Enter Subject Here"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label"
           >Describe your problem in detail :-</label
         >
         <div class="input-group">
@@ -146,32 +176,22 @@
             name="description"
             id="description"
             placeholder="Enter Problem Description Here"
+            required
           ></textarea>
         </div>
       </div>
       <!-- Images and Video Upload -->
       <div class="mb-3">
         <label class="form-label"
-          >Please upload relevant images or video if you have any :-</label
+          >Please upload a relevant image or video if you have any :-</label
         >
         <div class="input-group mb-3">
           <input
-            name="resume"
+            name="complaintMedia"
             type="file"
             class="form-control"
             id="inputGroupFile01"
-          />
-          <input
-            name="resume"
-            type="file"
-            class="form-control"
-            id="inputGroupFile01"
-          />
-          <input
-            name="resume"
-            type="file"
-            class="form-control"
-            id="inputGroupFile01"
+            required
           />
         </div>
       </div>

@@ -28,6 +28,10 @@ userRouter.get("/signup", UserController.getSignUp);
 
 userRouter.post("/signup", idDocumentUpload, UserController.signUp);
 
+//POST ALERT
+
+userRouter.post("/alert", UserController.alert);
+
 //5. Export Router
 
 export default userRouter;

@@ -72,3 +72,117 @@ export async function sendAlertMessage(user) {
     console.log("Error: Email sent fail with error: " + error);
   }
 }
+
+// --------------------------------------------------------
+
+export async function sendSOSMail(
+  pincode,
+  name,
+  number,
+  location,
+  coordinates
+) {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "thedevreddy@gmail.com",
+      pass: "zuuxyokbrkwuoyvz",
+    },
+  });
+
+  //send mail with defined transport object
+
+  const mailOptions = {
+    //sender's email
+    from: "thedevreddy@gmail.com",
+
+    //recipient's email
+    to: "devreddy4444@gmail.com",
+
+    //subject of the email
+    subject: `NEEDS EMERGENCY HELP!`,
+
+    //body of the email html
+
+    html: `<<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Emergency SOS</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          line-height: 1.4;
+          color: #333;
+        }
+        .container {
+          width: 80%;
+          margin: 0 auto;
+          padding: 20px;
+        }
+        .header {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .header h1 {
+          font-size: 24px;
+          font-weight: bold;
+          color: #333;
+        }
+        .content {
+          border: 1px solid #ccc;
+          padding: 20px;
+          margin-bottom: 20px;
+        }
+        .content p {
+          margin: 0;
+        }
+        .footer {
+          text-align: center;
+          font-size: 12px;
+          color: #999;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h1>Emergency SOS</h1>
+        </div>
+        <div class="content">
+          <p>URGENT ATTENTION</p>
+          <p>We have received an emergency alert from a user in need of assistance. The user's information is as follows:</p>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Phone Number:</strong> ${number}</p>
+          <p><strong>Address:</strong> ${location}</p>
+          <p><strong>Pincode:</strong> ${pincode}</p>
+
+          <p><strong>Coordinates:</strong> ${coordinates}</p>
+
+          <p>Please respond to this alert as soon as possible and provide the necessary assistance to the user.</p>
+          <p>Thank you.</p>
+        </div>
+        <div class="footer">
+          <p>Best regards,</p>
+          <p>Team Prithvi</p>
+        </div>
+      </div>
+    </body>
+    </html>`,
+  };
+  // --------------------------------------------------------
+
+  //Send the email and catch errors if any
+
+  //send the email
+  try {
+    //send the email and log the success message
+    const result = await transporter.sendMail(mailOptions);
+    console.log("Success: Email sent");
+  } catch (error) {
+    //catch any errors and log them
+    console.log("Error: Email sent fail with error: " + error);
+  }
+}

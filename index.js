@@ -11,6 +11,7 @@ import homeRouter from "./src/router/home.routes.js";
 import userRouter from "./src/router/user.routes.js";
 import rainStatusRouter from "./src/router/rain-status.routes.js";
 import adminRouter from "./src/router/admin.routes.js";
+import complaintRouter from "./src/router/complaint.routes.js";
 
 // ========================================================
 
@@ -61,6 +62,7 @@ app.use("/", homeRouter);
 app.use("/user", userRouter);
 app.use("/rain-status", rainStatusRouter);
 app.use("/admin", adminRouter);
+app.use("/complaint", complaintRouter);
 
 //EXPORTING THE APP
 export default app;

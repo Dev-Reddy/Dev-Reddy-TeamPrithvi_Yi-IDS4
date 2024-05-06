@@ -1,0 +1,90 @@
+<div class="container vh-100">
+  <div class="card mt-3 border-primary-subtle shadow">
+    <div class="card-body">
+      <form action="/complaint" method="GET">
+        <div class="input-group mb-3">
+          <span
+            class="input-group-text border border-secondary text-bg-secondary"
+            id="basic-addon1"
+          >
+            Enter Pincode &nbsp;
+          </span>
+          <input
+            type="number"
+            class="form-control border border-secondary"
+            placeholder="Enter Pincode Here to Check Complaints"
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2"
+            name="pincode"
+          />
+          <button
+            class="btn btn-outline-secondary"
+            type="submit"
+            id="button-addon2"
+          >
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+      <h1 class="text-center text-primary">COMPLAINT DETAILS</h1>
+
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th class="fs-5">ID No.</th>
+              <th class="fs-5">Name</th>
+              <th class="fs-5">Subject</th>
+              <th class="fs-5">Status</th>
+              <th class="fs-5">Pincode</th>
+              <th class="fs-5">Complaint</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (complaints && complaints.length > 0) { %> <%
+            complaints.forEach((complaint) => { %>
+            <tr>
+              <td scope="row"><%= complaint.id %></td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1"><%= complaint.name %></p>
+                    <p class="text-muted mb-0"><%= complaint.phone %></p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <p class="fw-normal mb-1"><%= complaint.title %></p>
+              </td>
+              <td>
+                <%if(complaint.status === 'Pending') { %>
+                <span class="rounded-pill d-inline badge btn bg-danger"
+                  ><%= complaint.status %></span
+                >
+                <% } else { %>
+                <span class="rounded-pill d-inline badge btn bg-success"
+                  ><%= complaint.status %></span
+                >
+                <% } %>
+              </td>
+              <td><%= complaint.pincode %></td>
+              <td>
+                <a
+                  href="/complaint/<%= complaint.id %>"
+                  class="btn btn-link btn-sm btn-rounded fw-bold"
+                >
+                  Go to Complaint
+                </a>
+              </td>
+            </tr>
+            <% }) %> <% } else { %>
+            <tr>
+              <td colspan="5" class="text-center">No Complaints Found</td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

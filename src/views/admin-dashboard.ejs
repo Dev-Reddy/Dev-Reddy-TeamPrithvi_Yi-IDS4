@@ -1,0 +1,91 @@
+<div class="container vh-100">
+  <!-- TOAST -->
+  <div
+    class="toast-container position-fixed top-0 start-50 translate-middle-x p-3"
+  >
+    <div
+      id="liveToast"
+      class="toast top-0 start-50 translate-middle-x"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header">
+        <strong class="me-auto">ALERT SENT</strong>
+        <small>just now</small>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">Alert Message has been sent to the users</div>
+    </div>
+  </div>
+  <!-- TOAST -->
+
+  <!-- SEND ALERT BUTTON -->
+
+  <div class="card text-center my-3 mt-5">
+    <div class="card-header bg-danger-subtle">
+      <h1><b>SEND ALERTS</b></h1>
+    </div>
+    <div class="card-body my-2">
+      <h3 class="card-title">ALERT PEOPLE</h3>
+      <p class="card-text fs-5">
+        Press this button to all users in whose area there is a high risk of
+        heavy rain in the next two weeks. <br />
+        This will send an alert to all users in that area.
+      </p>
+
+      <!-- <button type="button" class="btn btn-primary" id="liveToastBtn">
+
+        <a href="/admin/send-alert" class="btn btn-danger">SEND ALERT</a>
+      </button> -->
+
+      <form action="/admin/send-alert" method="post">
+        <button type="submit" class="btn btn-danger w-100" id="liveToastBtn">
+          SEND ALERT
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- SEND ALERT BUTTON -->
+
+  <!-- ALL COMPLAINTS BUTTON -->
+
+  <div class="card text-center my-3 mt-5">
+    <div class="card-header bg-primary-subtle">
+      <h1><b>COMPLAINTS</b></h1>
+    </div>
+    <div class="card-body my-2">
+      <h3 class="card-title">VIEW ALL COMPLAINTS AND THEIR STATUS</h3>
+      <p class="card-text fs-5">
+        Press this button to see all the complaints filed by the users and their
+        status.<br />
+      </p>
+
+      <form action="/admin/complaints" method="post">
+        <button type="submit" class="btn btn-primary w-100" id="liveToastBtn">
+          VIEW COMPLAINTS
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ALL COMPLAINTS BUTTON -->
+</div>
+
+<script>
+  const toastTrigger = document.getElementById("liveToastBtn");
+  const toastLiveExample = document.getElementById("liveToast");
+
+  if (toastTrigger) {
+    const toastBootstrap =
+      bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastTrigger.addEventListener("click", () => {
+      toastBootstrap.show();
+    });
+  }
+</script>

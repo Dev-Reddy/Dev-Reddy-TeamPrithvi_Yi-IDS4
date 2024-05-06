@@ -5,7 +5,6 @@ let id = 1;
 export default class GovOfficialModel {
   constructor(
     name,
-    username,
     email,
     number,
     password,
@@ -14,13 +13,10 @@ export default class GovOfficialModel {
     pincode,
     city,
     district,
-    state,
-    municipality,
-    photoPath
+    state
   ) {
     this.id = id++;
     this.name = name;
-    this.username = username;
     this.email = email;
     this.number = number;
     this.password = password;
@@ -30,27 +26,47 @@ export default class GovOfficialModel {
     this.city = city;
     this.district = district;
     this.state = state;
-    this.municipality = municipality;
-    this.photoPath = photoPath;
     this.complaints = [];
   }
+
+  static getGovOfficial(pincode) {
+    return govOfficials.find((official) => official.pincode == pincode);
+  }
+
+  
 }
 
 //Creating some GovOfficials
 
+// var govOfficials = [
+//   new GovOfficialModel(
+//     "Jane Doe",
+//     "janedoe",
+//     "jane@doe.com",
+
+//     "1234567890",
+//     "1234",
+//     "12",
+//     793113,
+//     "Mawsynram",
+//     "East Khasi Hills",
+//     "Meghalaya",
+//     "India",
+//     "https://randomuser.me/api/portraits/w"
+//   ),
+// ];
+
 var govOfficials = [
   new GovOfficialModel(
     "Jane Doe",
-    "janedoe",
     "jane@doe.com",
-    "1234567890",
+    "123",
+    "a",
     "1234",
     "12",
     793113,
     "Mawsynram",
     "East Khasi Hills",
-    "Meghalaya",
-    "India",
-    "https://randomuser.me/api/portraits/w"
+    "Meghalaya"
   ),
 ];
