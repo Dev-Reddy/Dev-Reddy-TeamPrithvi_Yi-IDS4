@@ -102,9 +102,12 @@ export default class RainStatusController {
         .then((data) => data)
         .catch((err) => console.log(err));
 
-      const address = location.address
-        ? `${location.address.city}, ${location.address.state} - ${pincode}`
-        : `${pincode}`;
+      const a =
+        location.address.city != undefined ? location.address.city + "," : "";
+      const b = location.address.state ? location.address.state : "";
+      const c = pincode ? pincode : "";
+
+      const address = `${a} ${b} - ${c}`;
       const city = location.address.city ? location.address.city : "";
 
       const weather = await fetch(
