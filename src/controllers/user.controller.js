@@ -1,4 +1,5 @@
 //Importing user model
+import AdminModel from "../models/admin.model.js";
 import UserModel from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
@@ -7,7 +8,9 @@ class UserController {
   //render signin page
 
   static getSignIn(req, res) {
-    res.render("signin");
+    res.render("signin", {
+      loggedIn: req.session.loggedIn,
+    });
   }
 
   //sign in user
@@ -131,6 +134,15 @@ class UserController {
         }
       );
       req.session.token = token;
+      req.session.userID = user.id;
+      req.session.pincode = user.pincode;
+      req.session.loggedIn = true;
+      const alertUser = {
+        number: user.number,
+        email: user.email,
+        address: user.address,
+      };
+      AdminModel.addUserToAlertList(pincode, alertUser);
       //2. Send the token to the client
       return res.status(200).redirect("/");
     }

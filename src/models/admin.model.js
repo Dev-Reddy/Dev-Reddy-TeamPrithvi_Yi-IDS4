@@ -14,6 +14,40 @@ export default class AdminModel {
     this.password = password;
     this.photoPath = photoPath;
   }
+
+  //Method to sign in an admin
+  static signIn(username, password) {
+    let admin = admins.find(
+      (admin) => admin.username === username && admin.password === password
+    );
+    return admin;
+  }
+
+  //Method to get admin by id
+
+  static getAdminById(id) {
+    let admin = admins.find((admin) => admin.id == id);
+    return admin;
+  }
+
+  //add user to alert list
+  static addUserToAlertList(pincode, user) {
+    let pin = alertUsers.find((p) => p.pincode == pincode);
+    if (pin) {
+      pin.users.push(user);
+    } else {
+      alertUsers.push({
+        pincode: pincode,
+        users: [user],
+      });
+    }
+  }
+
+  //get all alert users
+
+  static getAlertUsers() {
+    return alertUsers;
+  }
 }
 
 //Creating some admins
@@ -33,20 +67,14 @@ let admins = [
 
 let alertUsers = [
   {
-    latitue: 12.9716,
-    longitude: 77.5946,
     pincode: 560001,
-    city: "Bangalore",
-    state: "Karnataka",
     users: [
       {
-        name: "User1",
         number: "1234567890",
         email: "user1@ab.com",
         address: "123, 4th cross, 5th main, 6th sector, Bangalore",
       },
       {
-        name: "User2",
         number: "1234567890",
         email: "user@2,com",
         address: "123, 4th cross, 5th main, 6th sector, Bangalore",
@@ -54,20 +82,14 @@ let alertUsers = [
     ],
   },
   {
-    latitue: 19.076,
-    longitude: 72.8777,
-    city: "Mumbai",
-    state: "Maharashtra",
     pincode: 400001,
     users: [
       {
-        name: "User3",
         number: "1234567890",
-        email: "afs@asd.com",
+        email: "sharadreddy11@gmail.com",
         address: "123, 4th cross, 5th main, 6th sector, Mumbai",
       },
       {
-        name: "User4",
         number: "1234567890",
         email: "sdafsf",
         address: "123, 4th cross, 5th main, 6th sector, Mumbai",
@@ -75,17 +97,27 @@ let alertUsers = [
     ],
   },
   {
-    latitue: 23.2599,
-    longitude: 77.4126,
-    city: "Bhopal",
-    state: "Madhya Pradesh",
     pincode: 462001,
     users: [
       {
-        name: "User5",
         number: "1234567890",
         email: "sfs",
         address: "123, 4th cross, 5th main, 6th sector, Bhopal",
+      },
+    ],
+  },
+  {
+    pincode: 793113,
+    users: [
+      {
+        number: "1234567890",
+        email: "thedevreddy@gmail.com",
+        address: "123, 4th cross, 5th main, 6th sector, Shillong",
+      },
+      {
+        number: "1234567890",
+        email: "devreddy4444@gmail.com",
+        address: "123, 4th cross, 5th main, 6th sector, Shillong",
       },
     ],
   },

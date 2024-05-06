@@ -1,12 +1,26 @@
 <div class="container-md">
   <div
-    class="alert text-center alert-danger d-flex align-items-center justify-content-center my-3"
-    role="alert"
+    class="card my-3 pt-2 <% if (rainWarning.code >= 4) { %> text-bg-danger <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %> text-bg-warning <% } else { %> text-bg-success <% } %>"
   >
-    <div>
-      <h1>!!! WARNING !!!</h1>
-      <br />
-      <h3><b>HIGH RAINFALL ALERT IN BHOPAL</b></h3>
+    <div class="card-header text-center">
+      <% if (rainWarning.code >= 4) { %>
+      <h2>
+        WARNING!!! <%=rainWarning.message%> IN YOUR CURRENT LOCATION FOR THE
+        NEXT TWO WEEKS
+      </h2>
+      <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %>
+      <h2>
+        ALERT!!! <%=rainWarning.message%> IN YOUR CURRENT LOCATION FOR THE NEXT
+        TWO WEEKS
+      </h2>
+      <% } else if(rainWarning.code<=2 && rainWarning.code>=0){%>
+      <h2>
+        SAFE! <%=rainWarning.message%> IN YOUR CURRENT LOCATION FOR THE NEXT TWO
+        WEEKS
+      </h2>
+      <% } else {%>
+      <h2>NO RAIN IN YOUR CURRENT LOCATION FOR THE NEXT TWO WEEKS</h2>
+      <% } %>
     </div>
   </div>
 

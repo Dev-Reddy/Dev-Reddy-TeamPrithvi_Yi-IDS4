@@ -1,5 +1,6 @@
 // Description: User model schema and some users
 
+import AdminModel from "./admin.model.js";
 //Creating the UserModel class
 
 let id = 1;
@@ -92,6 +93,12 @@ export default class UserModel {
     }
     users.push(user);
     console.log(users);
+    const alertUser = {
+      number,
+      email,
+      address,
+    };
+    AdminModel.addUserToAlertList(pincode, alertUser);
     return user;
   }
 

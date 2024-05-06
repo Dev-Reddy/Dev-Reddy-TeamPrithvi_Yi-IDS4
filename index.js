@@ -7,8 +7,10 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 
 //IMPORTING ROUTERS
+import homeRouter from "./src/router/home.routes.js";
 import userRouter from "./src/router/user.routes.js";
 import rainStatusRouter from "./src/router/rain-status.routes.js";
+import adminRouter from "./src/router/admin.routes.js";
 
 // ========================================================
 
@@ -50,11 +52,7 @@ app.use(cookieParser());
 
 // =========================================================
 
-app.get("/", (req, res) => {
-  res.render("home", {
-    loggedIn: req.session.loggedIn,
-  });
-});
+app.use("/", homeRouter);
 
 // =========================================================
 
@@ -62,6 +60,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRouter);
 app.use("/rain-status", rainStatusRouter);
+app.use("/admin", adminRouter);
 
 //EXPORTING THE APP
 export default app;

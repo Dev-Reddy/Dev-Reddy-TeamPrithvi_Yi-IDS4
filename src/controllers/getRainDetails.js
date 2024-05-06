@@ -113,6 +113,33 @@ export function getRainWarning(rainDetails) {
   }
 }
 
+export async function pincodeRainWarning(pincode) {
+  const coordinateAddress = `india+${pincode}`;
+  const geoLocationData = await fetch(
+    `https://geocode.maps.co/search?q=${coordinateAddress}&api_key=66366662de130938126976jscf35868`
+  )
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => console.log(err));
+
+  const coordinates = {
+    latitude: geoLocationData[0].lat,
+    longitude: geoLocationData[0].lon,
+  };
+
+  const weather = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${coordinates.latitude}&longitude=${coordinates.longitude}&daily=precipitation_sum,rain_sum,showers_sum,precipitation_hours,precipitation_probability_max&timezone=auto&forecast_days=14&models=best_match`
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+
+  const rainDetails = getRainDetails(weather);
+
+  const rainWarning = getRainWarning(rainDetails);
+
+  return rainWarning.code;
+}
+
 // getRainDetails({
 //   latitude: 25.375,
 //   longitude: 91.625,
