@@ -11,6 +11,10 @@ This repository contains the code for the Yi-IDS Greenovation Challenge. To run 
 1. Clone the repository.
 2. Install the npm packages by running `npm install`.
 3. Run the code by running `node server.js`.
+4. Open the browser and go to `http://localhost:3300/`.
+5. For admin functions go to `http://localhost:3300/admin`.
+
+### TEST ID FOR USER LOGIN - email: "john@doe.com", password: "password",
 
 ## Team Members
 
