@@ -19,7 +19,7 @@ This repository contains the code for the Yi-IDS Greenovation Challenge. To run 
 ## Team Members
 
 1. Dev Reddy (Team Leader)
-2. Sharad C. Reddy (Team Member)
+2. Sharad C. Reddy (Team Member) - https://github.com/SCR01
 3. Kanishka Verma (Team Member)
 4. Shivansh Mishra (Team Member)
 5. Dhrup Ivane (Team Member)
