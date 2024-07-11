@@ -67,4 +67,11 @@ app.use("/complaint", complaintRouter);
 app.use("/educate", educateRouter);
 
 //EXPORTING THE APP
-export default app;
+// export default app;
+
+const PORT = 3300;
+
+//Starting the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
