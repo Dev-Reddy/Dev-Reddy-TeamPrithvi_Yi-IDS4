@@ -2,7 +2,7 @@
 import app from "./index.js";
 
 //Setting up the port
-const PORT = 3300;
+const PORT = process.env.PORT || 3300;
 
 //Starting the server
 app.listen(PORT, () => {
