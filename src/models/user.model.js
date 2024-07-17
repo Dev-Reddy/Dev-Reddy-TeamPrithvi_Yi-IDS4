@@ -124,7 +124,7 @@ var users = [
     name: "John Doe",
     email: "john@doe.com",
     number: "1234567890",
-    password: "password",
+    password: "123",
     coordinates: {
       latitude: 25.2973,
       longitude: 91.5827,

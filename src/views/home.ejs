@@ -3,24 +3,9 @@
     class="card my-3 pt-2 <% if (rainWarning.code >= 4) { %> text-bg-danger <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %> text-bg-warning <% } else { %> text-bg-success <% } %>"
   >
     <div class="card-header text-center">
-      <% if (rainWarning.code >= 4) { %>
-      <h2>
-        WARNING!!! <%=rainWarning.message%> IN YOUR CURRENT LOCATION FOR THE
-        NEXT TWO WEEKS
-      </h2>
-      <% } else if (rainWarning.code >= 2 && rainWarning.code <= 3) { %>
-      <h2>
-        ALERT!!! <%=rainWarning.message%> IN YOUR CURRENT LOCATION FOR THE NEXT
-        TWO WEEKS
-      </h2>
-      <% } else if(rainWarning.code<=2 && rainWarning.code>=0){%>
-      <h2>
-        SAFE! <%=rainWarning.message%> IN YOUR CURRENT LOCATION FOR THE NEXT TWO
-        WEEKS
-      </h2>
-      <% } else {%>
-      <h2>NO RAIN IN YOUR CURRENT LOCATION FOR THE NEXT TWO WEEKS</h2>
-      <% } %>
+      <a class="text-white fs-3" href="/rain-status" id="rain-link">
+        SEE RAIN STATUS FOR ANY LOCATION
+      </a>
     </div>
   </div>
 

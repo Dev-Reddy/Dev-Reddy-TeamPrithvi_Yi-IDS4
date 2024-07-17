@@ -14,7 +14,7 @@ This repository contains the code for the Yi-IDS Greenovation Challenge. To run 
 4. Open the browser and go to `http://localhost:3300/`.
 5. For admin functions go to `http://localhost:3300/admin`.
 
-### TEST ID FOR USER LOGIN - email: "john@doe.com", password: "password",
+### TEST ID FOR USER LOGIN - email: "john@doe.com", password: "123",
 
 ## Team Members
 

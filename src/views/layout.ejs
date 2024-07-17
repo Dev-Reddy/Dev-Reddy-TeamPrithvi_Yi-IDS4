@@ -90,9 +90,21 @@
           <!-- danger button -->
           <button
             type="button"
+            class="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#warningModal"
+          >
+            PLEASE READ THIS FIRST
+          </button>
+        </div>
+
+        <div class="d-flex mx-4" role="alert">
+          <!-- danger button -->
+          <button
+            type="button"
             class="btn btn-danger"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#SOSModal"
           >
             EMERGENCY SOS
           </button>
@@ -116,11 +128,63 @@
 
     <!-- NAVBAR -->
 
-    <!-- MODAL -->
+    <!-- WARNING MODAL -->
 
     <div
       class="modal fade"
-      id="exampleModal"
+      id="warningModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              <b>POTENTIAL SERVER ERROR</b>
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>This website uses external APIs to fetch data.</li>
+              <li>
+                If the website is not loading due to a server error, please try
+                again later.
+              </li>
+              <li>
+                Alternatively, you can also run it on your local machine by
+                following the instructions in the README file of this
+                <a
+                  href="https://github.com/Dev-Reddy/Dev-Reddy-TeamPrithvi_Yi-IDS4"
+                  >GitHub repository</a
+                >. The project always works on a local machine.
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOS MODAL -->
+
+    <div
+      class="modal fade"
+      id="SOSModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
