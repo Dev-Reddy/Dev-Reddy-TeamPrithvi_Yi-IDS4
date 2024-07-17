@@ -50,6 +50,7 @@ export function getRainDetails(weather) {
     } else {
       status = "Very Light Rain";
     }
+
     return {
       index: day,
       date: new Date(dailyWeather.time[day]).toDateString(),
@@ -62,7 +63,8 @@ export function getRainDetails(weather) {
       status,
     };
   });
-
+  console.log(rainDetails);
+  rainDetails.sort((a, b) => new Date(a.date) - new Date(b.date));
   return rainDetails;
 }
 
