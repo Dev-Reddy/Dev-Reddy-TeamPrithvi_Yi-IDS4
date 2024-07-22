@@ -43,6 +43,16 @@ export default class RainStatusController {
       //   ? `${location.address.city}, ${location.address.state} - ${pincode}`
       //   : `${location.address.state} - ${pincode}`;
 
+      if (location === undefined || location.address === undefined) {
+        return res.render("rain-status", {
+          error: "Invalid Pincode",
+          address: "",
+          city: "",
+          rainDetails: [],
+          loggedIn: req.session.loggedIn,
+          rainWarning: "",
+        });
+      }
       const a =
         location.address.city != undefined ? location.address.city + "," : "";
       const b = location.address.state ? location.address.state : "";
