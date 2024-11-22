@@ -9,7 +9,7 @@ export default class AdminController {
       loggedIn: req.session.loggedIn,
     });
   }
-
+c
   static sendAlert(req, res) {
     const alertUsers = AdminModel.getAlertUsers();
     alertUsers.forEach((alertUser) => {

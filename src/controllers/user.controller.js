@@ -151,7 +151,8 @@ class UserController {
 
   static alert(req, res) {
     const { name, number, location, pincode } = req.body;
-    console.log(req.body);
+    console.log("Body ", req.body);
+    console.log(req.headers);
     if (req.headers["geolocation"]) {
       const geolocation = JSON.parse(req.headers["geolocation"]);
       const coordinatesObj = {
@@ -159,10 +160,11 @@ class UserController {
         longitude: geolocation.longitude,
       };
       const coordinates = JSON.stringify(coordinatesObj);
-      console.log(coordinates);
+      console.log("Coordinates ", coordinates);
       sendSOSMail(pincode, name, number, location, coordinates);
       return res.status(200).redirect("/");
     }
+    console.log("No Coordinates");
     sendSOSMail(pincode, name, number, location);
     return res.status(200).redirect("/");
   }

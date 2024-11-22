@@ -210,7 +210,7 @@
               access your location before sending the SOS so that we can send
               the emergency services to your location.
             </p>
-            <form action="/user/alert" method="post" class="p-2">
+            <form action="/user/alert" method="post" class="p-2" id="sosForm">
               <div class="mb-3">
                 <div class="input-group">
                   <span class="input-group-text">Name</span>
@@ -220,6 +220,7 @@
                     aria-label="name"
                     class="form-control"
                     placeholder="enter your name"
+                    id="sos_name"
                   />
                 </div>
               </div>
@@ -232,6 +233,7 @@
                     aria-label="number"
                     class="form-control"
                     placeholder="Enter your contact details"
+                    id="sos_number"
                   />
                 </div>
               </div>
@@ -244,6 +246,7 @@
                     aria-label="location"
                     class="form-control"
                     placeholder="Enter your current location"
+                    id="sos_location"
                   />
                 </div>
               </div>
@@ -257,6 +260,7 @@
                     aria-label="pincode"
                     class="form-control"
                     placeholder="Enter your pincode"
+                    id="sos_pincode"
                   />
                 </div>
               </div>
@@ -418,7 +422,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
     ></script>
     <!-- LOCATION -->
-    <script>
+    <!-- <script>
       console.log("Location script running");
       function getLocation() {
         if (navigator.geolocation) {
@@ -456,6 +460,66 @@
         console.log(error);
       };
       window.onload = getLocation;
+    </script> -->
+
+    <script>
+      console.log("SOS script running");
+
+      async function getLocationAndSubmitForm(event) {
+        event.preventDefault(); // Prevent the form from submitting immediately.
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              const coordinates = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              };
+
+              // Get form data
+              const form = document.getElementById("sosForm");
+              const formData = new FormData(form);
+
+              // Create an XMLHttpRequest
+              const request = new XMLHttpRequest();
+              request.open("POST", form.action);
+              request.setRequestHeader("Content-Type", "application/json");
+              request.setRequestHeader(
+                "geolocation",
+                JSON.stringify(coordinates)
+              );
+
+              // Convert form data to JSON
+              const data = {};
+              formData.forEach((value, key) => {
+                data[key] = value;
+              });
+
+              // Send the data along with the coordinates in the headers.
+              request.send(JSON.stringify(data));
+
+              request.onload = () => {
+                if (request.status === 200) {
+                  alert("SOS sent successfully!");
+                } else {
+                  alert("Failed to send SOS. Please try again.");
+                }
+              };
+            },
+            (error) => {
+              console.error("Geolocation error: ", error);
+              alert("Failed to get location. Please enable location services.");
+            }
+          );
+        } else {
+          console.error("Geolocation is not supported by this browser.");
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+
+      // Attach the event listener to the form.
+      const sosForm = document.getElementById("sosForm");
+      sosForm.addEventListener("submit", getLocationAndSubmitForm);
     </script>
   </body>
 </html>
